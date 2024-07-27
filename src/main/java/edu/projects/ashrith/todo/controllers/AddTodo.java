@@ -4,6 +4,7 @@ import edu.projects.ashrith.todo.exceptions.ActivityLogs;
 import edu.projects.ashrith.todo.models.Tasks;
 import edu.projects.ashrith.todo.payload.AddTodoDTO;
 import edu.projects.ashrith.todo.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AddTodo {
     @Autowired
     private TaskService taskService;
     @PostMapping("/add")
-    public ResponseEntity<AddTodoDTO> addTodo(@RequestBody AddTodoDTO task) {
+    public ResponseEntity<AddTodoDTO> addTodo(@Valid @RequestBody AddTodoDTO task) {
         ActivityLogs log = new ActivityLogs("ApiRequests.txt");
         log.logActivity(task.getEmail(), "Adding");
         return new ResponseEntity<>(taskService.addTask(task), HttpStatus.CREATED);
