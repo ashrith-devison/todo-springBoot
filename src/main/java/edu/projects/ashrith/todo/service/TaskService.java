@@ -10,5 +10,7 @@ public interface TaskService {
 
     public AddTodoDTO updateTask(AddTodoDTO task, String email, Long taskid);
 
-    public List<Tasks> getTasks(Long userid);
+    public List<Tasks> getTasks(String email);
+
+    public Tasks deleteTask(String email, Long taskid);
 }
